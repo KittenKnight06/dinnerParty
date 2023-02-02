@@ -14,13 +14,13 @@ const AppNavbar = () => {
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-          Search Ingredients for Recipes 
+          Search an Ingredient for Recipes 
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/'>
-                Search For Ingredient
+                Search For Recipes
               </Nav.Link>
               {/* if user is logged in show saved recipes and logout */}
               {Auth.loggedIn() ? (

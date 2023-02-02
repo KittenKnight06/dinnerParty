@@ -9,7 +9,7 @@ export const GET_ME = gql`
       recipeCount
       savedRecipes {
         recipeId
-        description
+        method
         name
         image
         link

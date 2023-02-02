@@ -16,7 +16,7 @@ const typeDefs = gql`
 
   type Recipe {
     recipeId: ID!
-    description: String
+    method: String
     name: String
     image: String
     link: String
@@ -25,7 +25,7 @@ const typeDefs = gql`
   input InputRecipe {
     recipeId: String
     name: String
-    description: String
+    method: String
     image: String
     link: String
   }

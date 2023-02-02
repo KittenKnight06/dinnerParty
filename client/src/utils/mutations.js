@@ -40,7 +40,7 @@ export const ADD_USER = gql`
           image
           link
           name
-          description
+          method
         }
       }
     }
@@ -55,7 +55,7 @@ export const SAVE_RECIPE = gql`
       email
       savedRecipes {
         recipeId
-        description
+        method
         name
         image
         link
@@ -72,7 +72,7 @@ export const REMOVE_RECIPE = gql`
       email
       savedRecipes {
         recipeId
-        description
+        method
         name
         image
         link
