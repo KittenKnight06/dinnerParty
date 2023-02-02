@@ -36,22 +36,22 @@ const resolvers = {
 
       return { token, user };
     },
-    saveBook: async (parent, { newBook }, context) => {
+    saveRecipe: async (parent, { newRecipe }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { savedBooks: newBook }},
+          { $push: { savedRecipes: newRecipe }},
           { new: true }
         );
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeBook: async (parent, { bookId }, context) => {
+    removeRecipe: async (parent, { recipeId }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedBooks: { bookId }}},
+          { $pull: { savedRecipes: { recipeId }}},
           { new: true }
         );
         return updatedUser;
