@@ -23,32 +23,42 @@ const SearchRecipes = () => {
       return false;
     }
 
-    try {
-      const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInput}`
-      );
+    function recipeData () {
+      var recipeURL = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInput}`;
 
-      if (!response.ok) {
-        throw new Error('Something went wrong!');
-      }
-
-      const { items } = await response.json();
-
-      const recipeData = items.map((recipe) => ({
-        recipeId: recipe.idMeal,
-        name: recipe.volumeInfo.strMeal,
-        ingredient: recipe.volumeInfo.strIngredient,
-        measure: recipe.volumnInfo.strMeasure,
-        method: recipe.volumeInfo.strInstructions,
-        image: recipe.volumeInfo.imageLinks?.strMealThumb || '',
-      }));
-
-      setSearchedRecipes(recipeData);
-      setSearchInput('');
-    } catch (err) {
-      console.error(err);
+      return fetch (recipeURL)
+      .then(function(response){
+        return response.json()
+      })
     }
-  };
+
+    // try {
+    //   const response = await fetch(
+    //     `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInput}`
+    //   );
+
+    //   if (!response.ok) {
+    //     throw new Error('Something went wrong!');
+    //   }
+
+    //   const {items} = await response.json();
+      
+    //   const recipeData = items.map((recipe) => ({
+    //     recipeId: recipe.idMeal,
+    //     name: recipe.strMeal,
+    //     ingredient: recipe.strIngredient,
+    //     measure: recipe.strMeasure,
+    //     method: recipe.strInstructions,
+    //     image: recipe.strMealThumb || '',
+    //   }));
+ 
+    //   setSearchedRecipes(recipeData);
+    //   setSearchInput('');
+    // } catch (err) {
+    //   console.error(err);
+    // }
+  }
+
 
   const handleSaveRecipe = async (recipeId) => {
     const recipeToSave = searchedRecipes.find((recipe) => recipe.recipeId === recipeId);
@@ -71,7 +81,7 @@ const SearchRecipes = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+      <Jumbotron fluid className='text-light bg-success'>
         <Container>
           <h1>Search for Recipes!</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -87,7 +97,7 @@ const SearchRecipes = () => {
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
+                <Button type='submit' variant='primary' size='lg'>
                   Submit Search
                 </Button>
               </Col>
